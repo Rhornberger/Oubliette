@@ -70,11 +70,11 @@ What will the user see on each page? What can they input and click and see? How 
 Here you'll want to come up with some (very rough) estimates of the timeframe for each section, as well as milestones. State specifically which steps you'll take in the implementation. This section should also include work you're planning to do after the capstone is finished.
 
 **tentative schedule**
-    -Days 1-3: Create my API for the Base informtion of Game play. This to include all info required for the quick reference functionality. Start on the base sketches for how I want my pages to present. (This is for the Pathfinder RPG and there is no publicly available API so I need to create my own with the necessary information)
-    -Days 4-6: Create the functionality for the quick refernce. Be able to pull up the info based on input values.
-    -Days 7-9: Create functionality for accounts and allow users to sign in and out and send invites to friends and initiate a new Party as DM.
-    -Days 10-11: Create a form that acts as a charactersheet and saves all player info. This will allow read and write to the appropriate users based on previous stipulations.
-    -Days 12-15: Use this time to finish and polish all css and fine tune any functionality that is not working as I would like.
+        -Days 1-3: Create my API for the Base informtion of Game play. This to include all info required for the quick reference functionality. Start on the base sketches for how I want my pages to present. (This is for the Pathfinder RPG and there is no publicly available API so I need to create my own with the necessary information)
+        -Days 4-6: Create the functionality for the quick refernce. Be able to pull up the info based on input values.
+        -Days 7-9: Create functionality for accounts and allow users to sign in and out and send invites to friends and initiate a new Party as DM.
+        -Days 10-11: Create a form that acts as a charactersheet and saves all player info. This will allow read and write to the appropriate users based on previous stipulations.
+        -Days 12-15: Use this time to finish and polish all css and fine tune any functionality that is not working as I would like.
 
     -What I want to accomplish after the capstone presentation: 
         -I want to add in a Partial Random character genterator so that NPC's can easily be created and so that if visitors are in from out of town and want to play with the paty during a game they can just decide what kind of character they want to play and the program will develop a character that will meet minimum requirements to match the rest of the party.
