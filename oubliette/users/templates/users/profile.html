@@ -13,12 +13,12 @@
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4"> Gossip Girl Profile Info</legend>
+                <legend class="border-bottom mb-4"> Oubliette profile</legend>
                 {{ u_form|crispy }}
                 {{ p_form|crispy }}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-info" type="submit" >Let's Update your Gossip Account</button>
+                <button class="btn btn-outline-info" type="submit" >Let's Update your oubliette profile</button>
             </div>
         </form>
     </div>

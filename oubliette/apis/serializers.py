@@ -10,8 +10,8 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username', 'email')
 
-class CharacterSerializer(serializers.ModelSerializer):
-    # author_detail = CharacterSerializer(read_only=True, source="author")
-    class Meta:
-        model = Character
-        fields = ('class', 'race', 'gender', 'age')
+# class CharacterSerializer(serializers.ModelSerializer):
+#     # author_detail = CharacterSerializer(read_only=True, source="author")
+#     class Meta:
+#         model = Character
+#         fields = ('class', 'race', 'gender', 'age')

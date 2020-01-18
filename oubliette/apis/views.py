@@ -5,13 +5,13 @@ from django.contrib.auth.models import User
 # from django.utils.decorators import mathod_decorator # for csrf_exempt
 
 from characters.models import Character
-from .serializers import CharacterSerializer, UserSerializer
+from .serializers import UserSerializer  #CharacterSerializer
 
 # Create your views here.
 
-class CharacterViewSet(viewsets.ModelViewSet):
-    queryset = Character.objects.all()
-    serializer_class = CharacterSerializer
+# class CharacterViewSet(viewsets.ModelViewSet):
+#     queryset = Character.objects.all()
+#     serializer_class = CharacterSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
