@@ -1,13 +1,42 @@
 {% extends "users/base.html" %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hello {{username}}</h1>
-</body>
-</html>
+{% if user.is_authenticated %}
+<h1>Welcome {{ user.username }}!</h1>
+<p><a href="{% url 'logout' %}">Logout</a><p>
+{% else %}
+<h1>Welcome, visitor!</h1>
+<p>You are not logged in. <a href="{% url 'login' %}">Login</a> <a href="{% url 'users:signup' %}">Sign Up</a></p>
+{% endif %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-4 border border-dark container-left">
+            <div class="border-bottom border-dark container2-left">
+                <img class="rounded-circle article-img" src="{{ user.profile.img.url }}">
+                <h3>{{ user.username }}</h3>  
+            </div>
+                <h2>this will hold buttons that will display different information pathways </h2>
+        </div>
+        <div class="col-md-4 border border-dark container-center">
+            <h2>this will display different cards that will house info and buttons to display additional info in the far right box</h2>
+            <h3>This window will also switch info dislay when a button on the bottom far left is clicked to display the requested info</h3>
+            {% if characters %}
+                {% for character in characters %}
+                    <div class="card" style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-md-4 border border-dark container-right">
+            <h2>this will display the full character info of the chosen character</h2>
+        </div>
+
+
+    </div>
+{% endblock %}
+

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.contrib import messages
 from django.views import generic
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
@@ -8,12 +9,12 @@ from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 # Create your views here.
 def register(request):
     if request.method == 'POST':
-        form = UserRegisterForm(request.Post)
+        form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Congragulations {username} your account has been created! You may now login.')
-            return redirect('home')
+            return redirect('users:home')
 
     else:
         form = UserRegisterForm()
@@ -28,7 +29,7 @@ def profile(request):
             u_form.save()
             p_form.save()
             messages.success(request, f'Your account has been Updated!')
-            return redirect('profile')
+            return redirect('users:profile')
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
@@ -39,3 +40,8 @@ def profile(request):
     }
     return render(request, 'users/profile.html', context)
 
+def home(request):
+    return render(request, 'users/home.html')
+
+def about(request):
+    return render(request, 'users/about.html')

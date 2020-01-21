@@ -18,19 +18,19 @@
     <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
             <div class="container">
-                <a class="navbar-brand mr-4" href="{% url 'profile'%}">Oubliette  <h6>Let's start a new Adventure!</h6></a>
+                <a class="navbar-brand mr-4" href="{% url 'profile'%}">Oubliette <h6>Let's start a new Adventure!</h6></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
-                        <a class="nav-item nav-link" href="{% url 'profile'%}">Profile</a>
-                        {% comment %} <a class="nav-item nav-link" href="{% url 'gossip-about'%}">About</a> {% endcomment %}
+                        <a class="nav-item nav-link" href="{% url 'users:home'%}">Home</a>
+                        {% comment %} <a class="nav-item nav-link" href="{% url 'users:profile'%}">Profile</a> {% endcomment %}
+                        <a class="nav-item nav-link" href="{% url 'users:about'%}">About</a>
                     </div>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                         {% if user.is_authenticated %}
-                            {% comment %} <a class="nav-item nav-link" href="{% url 'post-create'%}">New account</a> {% endcomment %}
                             <a class="nav-item nav-link" href="{% url 'profile'%}">Profile</a>
                             <a class="nav-item nav-link" href="{% url 'logout'%}">Logout</a>
                         {% else %}
@@ -43,7 +43,7 @@
         </nav>
     </header>
     <main role="main" class="container">
-        <div class="row">
+        {% comment %} <div class="row">
             <div class="col-md-8">
             {% if messages %}
                 {% for message in messages %}
@@ -51,10 +51,10 @@
                         {{ message }}
                     </div>
                 {% endfor%}
-            {% endif %}
+            {% endif %} {% endcomment %}
             {% block content %}{% endblock %}
             </div>
-            <div class="col-md-4">
+            {% comment %} <div class="col-md-4">
                 <div class="content-section">
                     <h3>Our Sidebar</h3>
                     <p class='text-muted'>You can put any information here you'd like.
@@ -66,7 +66,7 @@
                         </ul>
                     </p>
                 </div>
-            </div>
+            </div> {% endcomment %}
         </div>
     </main>
      <!-- Optional JavaScript -->
