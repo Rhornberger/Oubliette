@@ -26,6 +26,7 @@ urlpatterns = [
     path('register', user_views.register, name='register'),
     # path('', include('oubliette.urls')),
     path('api/', include('apis.urls')),
+    # path('refernces', include('references.urls')),
     path('user/', include('django.contrib.auth.urls')),
     path('user/', include('users.urls')),
     path('', include('users.urls')),

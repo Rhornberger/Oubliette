@@ -186,10 +186,16 @@ a.article-title:hover {
     text-shadow: 1px 1px rgb(114, 112, 112);
 }
 
+.about-container {
+    padding-top: 15px;
+    padding-left: 325px;
+}
+
 .container-about {
-    background: rgba(85, 83, 83, 0.644);
+    background: rgba(122, 120, 120, 0.582);
 }
 
 .container-about p {
     color: rgb(7, 7, 7);
+    text-shadow: none;
 }
