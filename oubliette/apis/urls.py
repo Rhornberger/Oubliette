@@ -1,16 +1,19 @@
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 
-from .views import UserViewSet #CharacterViewSet
-from django.urls import path
-from references import views
+from .views import UserViewSet, SpellViewSet #User View sets and spell view sets
 
+
+# from references import views
+from . import views
+
+# this is reregistering the different routers for the viewsets
 router = DefaultRouter()
 router.register('users', UserViewSet, basename='users')
-# router.register('spells', )
+router.register('spell', SpellViewSet, basename='spell')
 # router.register('', CharacterViewSet, basename='characters')
 
 urlpatterns = router.urls
-urlpatterns = [
-    path('spell', views.SpellAPIView.as_view())
-]
+# urlpatterns = [
+#     path('spell', views.SpellAPIView.as_view())
+# ]

@@ -139,7 +139,3 @@ LOGIN_REDIRECT_URL = 'users:home'
 LOGIN_URL = 'login'
 
 # LOGOUT_REDIRECT_URL = 'users:home'
-
-
-
-LOGIN_URL = 'login'

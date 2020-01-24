@@ -23,7 +23,7 @@ class SpellSerializer(serializers.ModelSerializer):
             'components',
             'spell_range',
             'target',
-            'effect',
+            'duration',
             'saving_throw',
             'spell_resistance',
             'description'

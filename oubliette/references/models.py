@@ -13,7 +13,7 @@ class Spell(models.Model):
     duration = models.CharField(max_length=100) #the kind of effect the spell produces
     saving_throw = models.CharField(max_length=100) # can it be protected againts and by what means
     spell_resistance = models.CharField(max_length=100) #is there any innate deffense against this spell
-    description = models.CharField(max_length=3000) #the general description of what the spell does
+    description = models.CharField(max_length=5000) #the general description of what the spell does
     
     def __str__(self):
         """this will return just the spells name when performing a search"""
