@@ -5,13 +5,16 @@ from django.contrib.auth.models import User
 # from django.utils.decorators import mathod_decorator # for csrf_exempt
 
 from characters.models import Character
-from .serializers import UserSerializer  #this will Serialize the info from the bd on users
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from apis import serializers
 from references.models import Spell
+from users.models import Profile
 from .serializers import SpellSerializer #this will Serialize the info from the bd on spells
+from .serializers import UserSerializer  #this will Serialize the info from the bd on users
+from .serializers import ProfileSerializer #this will serialize the info from DB on profiles
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -29,7 +32,10 @@ class SpellViewSet(viewsets.ModelViewSet):
     queryset = Spell.objects.all()
     serializer_class = SpellSerializer
 
-
+class ProfileViewSet(viewsets.ModelViewSet):
+   queryset = Profile.objects.all()
+   serializer_class = ProfileSerializer
+    
 # class SpellAPIView(APIView):
 #     """Test Api View"""
 #     serializer_class = serializers.SpellSerializer

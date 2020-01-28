@@ -1,64 +1,69 @@
 {% extends "users/base.html" %}
+
 {% if user.is_authenticated %}
-<h1>Welcome {{ user.username }}!</h1>
-<p><a href="{% url 'logout' %}">Logout</a><p>
+    <h1>Welcome {{ user.username }}!</h1>
+    <p><a href="{% url 'logout' %}">Logout</a><p>
 {% else %}
-<h1>Welcome, visitor!</h1>
-<p>You are not logged in. <a href="{% url 'login' %}">Login</a> <a href="{% url 'users:signup' %}">Sign Up</a></p>
+    <h1>Welcome, visitor!</h1>
+    <p>You are not logged in. <a href="{% url 'login' %}">Login</a> <a href="{% url 'users:signup' %}">Sign Up</a></p>
 {% endif %}
 
 {% block content %}
-    
+    <div id="app1">
         <div class="row">
             <div class="col-md-4 border border-dark container-left">
-                <div class="border-bottom border-dark container2-left">
-                    <article v-for="user in users" :key="user.id">
-                        <b-img rounded="circle" src="[[ user.profile.img.url ]]"></b-img>
-                        <h3>[[ user.username ]]</h3> 
-                    </article> 
+                <div class="border-bottom border-dark container2-left">    
+                        <img class="rounded-circle account-img" src="{{ user.profile.img.url }}">
+                        <h3>{{ user.username }}</h3>
                 </div>
                     <h2>this will hold buttons that will display different information pathways </h2>
+                    <button type="button" class="btn btn-dark" v-on:click="getSpells">Spells</button>
+                    <select class="selectpicker" placeholder="spells" v-if="items.length" v-model="selected" @change="itemSelected">
+                        <option v-for="item in items" :value="item.id">[[item.spell_name]]</option>
+                    </select>
             </div>
             <div class="col-md-4 border border-dark container-center">
-                <h2>this will display different cards that will house info and buttons to display additional info in the far right box</h2>
-                <h3>This window will also switch info dislay when a button on the bottom far left is clicked to display the requested info</h3>
-                {% if characters %}
-                    {% for character in characters %}
-                        <div class="card" style="width: 18rem;">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
+                <nav>
+                    <div class="nav nav-tabs" id="myTab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-character-tab" data-toggle="tab" href="#nav-character" role="tab" aria-controls="characters" aria-selected="true">Characters</a>
+                        <a class="nav-item nav-link" id="nav-quick-references-tab" data-toggle="tab" href="#nav-quick-references" role="tab"
+                        aria-controls="quick-references" aria-selected="false">Quick References</a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-character" role="tabpanel" aria-labelledby="nav-character-tab">
+                        <h2>this will display different cards that will house info and buttons to display additional info in the far right box</h2>
+                        <h3>This window will also switch info dislay when a button on the bottom far left is clicked to display the requested info</h3>
+                        {% if characters %}
+                            {% for character in characters %}
+                                <div class="card" style="width: 18rem;">
+                                    <img src="..." class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="tab-pane fade" id="nav-quick-references" role="tabpanel" aria-labelledby="nav-quick-references-tab">
+                        <div id="reference-display">
+                            <ul>
+                                <information
+                                    v-if="Object.keys(result).length"
+                                    v-bind:info="result"
+                                ></information>
+                            </ul>
                         </div>
-                    {% endfor %}
-                {% endif %}
+                    </div>
+                </div>
+           
             </div>
             <div class="col-md-4 border border-dark container-right">
                 <h2>this will display the full character info of the chosen character</h2>
             </div>
-        
+        </div>    
     </div>
-    <script>
-        let app = new Vue({
-            <!-- el:'#app1',  -->
-            delimiters:['[[',']]'],
-            data: {
-                users: [],
-            },
-            methods:{
-                getUserList: function() {
-                    axios({
-                        method: "get",
-                        url: "/api/users/"
-                    }).then(response => this.users = response.data)
-                },
-            },
-            mounted: function () {
-                this.getUserList();
-            }
-        })
-    </script>
-{% endblock %}
 
+{% endblock %}

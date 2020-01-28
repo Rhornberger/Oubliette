@@ -1,10 +1,18 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
-from characters.models import Character
 from references.models import Spell
+from users.models import Profile
 # from parties.models import Party
-# from references.models import Refernce
+# from characters.models import Character
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile 
+        feilds = (
+            'user',
+            'img',
+        )
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -16,6 +24,7 @@ class SpellSerializer(serializers.ModelSerializer):
     class Meta:
         model = Spell
         fields = (
+            'id',
             'spell_name',
             'school',
             'level',
@@ -28,6 +37,9 @@ class SpellSerializer(serializers.ModelSerializer):
             'spell_resistance',
             'description'
         )
+
+
+        
 
 # class CharacterSerializer(serializers.ModelSerializer):
 #     # author_detail = CharacterSerializer(read_only=True, source="author")
