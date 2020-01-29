@@ -5,10 +5,10 @@ from PIL import Image
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    img = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    img = models.ImageField(default='vegvisir.jpg', upload_to='profile_pics')
 
     def __str__(self):
-        return f'{self.user.username} {self.user.img} Profile'
+        return f'{self.user} {self.img} Profile'
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
