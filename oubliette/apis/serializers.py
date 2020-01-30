@@ -24,13 +24,14 @@ from characters.models import Sixth_Lvl_Spell
 from characters.models import Seventh_Lvl_Spell
 from characters.models import Eighth_Lvl_Spell
 from characters.models import Ninth_Lvl_Spell
+from characters.models import Note
 # from parties.models import Party
 # from characters.models import Character
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile 
-        feilds = (
+        fields = (
             'id',
             'user',
             'img',
@@ -110,10 +111,10 @@ class CharacterSerializer(serializers.ModelSerializer):
             'cmb',
             'cmd',
             'weapon',
-            'languages',
+            'language',
             'acrobatics',
             'appraise',
-            'bluff ',
+            'bluff',
             'climb',
             'craft',
             'diplomacy',
@@ -164,6 +165,7 @@ class CharacterSerializer(serializers.ModelSerializer):
             'seventh_lvl_spell',
             'eighth_lvl_spell',
             'ninth_lvl_spell',
+            'note',
             'xp',
             'xp_next_lvl',
             'img',    
@@ -207,10 +209,10 @@ class ProfessionSerializer(serializers.ModelSerializer):
 
 class LanguageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Perform
+        model = Language
         fields = (
             'id',
-            'Language',
+            'language',
         )
 
 class WeaponSerializer(serializers.ModelSerializer):
@@ -334,7 +336,7 @@ class Eighth_Lvl_SpellSerializer(serializers.ModelSerializer):
         model = Eighth_Lvl_Spell
         fields = (
             'id',
-            'Eighth_lvl_spell',
+            'eighth_lvl_spell',
         )
 
 class Ninth_Lvl_SpellSerializer(serializers.ModelSerializer):
@@ -343,4 +345,12 @@ class Ninth_Lvl_SpellSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'ninth_lvl_spell',
+        )
+
+class NoteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Note
+        fields = (
+            'id',
+            'note'
         )

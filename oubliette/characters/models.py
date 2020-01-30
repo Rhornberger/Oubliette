@@ -215,6 +215,16 @@ class Ninth_Lvl_Spell(models.Model):
     def __str__(self):
         return self.ninth_lvl_spell
 
+class Note(models.Model):
+    note = models.CharField(max_length=5000, null=True, blank=True)
+
+    class Meta:
+        ordering = ['note']
+
+    def __str__(self):
+        return self.note
+    
+
 class Character(models.Model):
     player_name = models.ForeignKey(User, on_delete=models.CASCADE)
     character_name = models.CharField(max_length=50, null=True, blank=True)
@@ -315,6 +325,7 @@ class Character(models.Model):
     ninth_lvl_spell = models.ManyToManyField(Ninth_Lvl_Spell)
     xp = models.IntegerField(null=True, blank=True)
     xp_next_lvl = models.IntegerField(null=True, blank=True)
+    note = models.ManyToManyField(Note)
 
     img = models.ImageField(default='default.jpg', upload_to='character_pics') 
 

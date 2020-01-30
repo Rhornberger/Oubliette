@@ -12,11 +12,11 @@ from rest_framework import status
 from apis import serializers
 from references.models import Spell
 from users.models import Profile
-from characters.models import Character, Craft, Knowledge, Perform, Profession, Language, Weapon, Ac_Item, Gear, Feat, Special_Ability, Zero_Lvl_Spell, First_Lvl_Spell, Second_Lvl_Spell, Third_Lvl_Spell, Fourth_Lvl_Spell, Fifth_Lvl_Spell, Sixth_Lvl_Spell, Seventh_Lvl_Spell,Eighth_Lvl_Spell, Ninth_Lvl_Spell
+from characters.models import Character, Craft, Knowledge, Perform, Profession, Language, Weapon, Ac_Item, Gear, Feat, Special_Ability, Zero_Lvl_Spell, First_Lvl_Spell, Second_Lvl_Spell, Third_Lvl_Spell, Fourth_Lvl_Spell, Fifth_Lvl_Spell, Sixth_Lvl_Spell, Seventh_Lvl_Spell,Eighth_Lvl_Spell, Ninth_Lvl_Spell, Note
 from .serializers import SpellSerializer #this will Serialize the info from the bd on spells
 from .serializers import UserSerializer  #this will Serialize the info from the bd on users
 from .serializers import ProfileSerializer #this will serialize the info from DB on profiles
-from .serializers import CharacterSerializer, CraftSerializer, KnowledgeSerializer, PerformSerializer, ProfessionSerializer, LanguageSerializer, WeaponSerializer, Ac_ItemSerializer, GearSerializer, FeatSerializer, Special_AbilitySerializer, Zero_Lvl_SpellSerializer, First_Lvl_SpellSerializer, Second_Lvl_SpellSerializer, Third_Lvl_SpellSerializer, Fourth_Lvl_SpellSerializer, Fifth_Lvl_SpellSerializer, Sixth_Lvl_SpellSerializer, Seventh_Lvl_SpellSerializer, Eighth_Lvl_SpellSerializer, Ninth_Lvl_SpellSerializer
+from .serializers import CharacterSerializer, CraftSerializer, KnowledgeSerializer, PerformSerializer, ProfessionSerializer, LanguageSerializer, WeaponSerializer, Ac_ItemSerializer, GearSerializer, FeatSerializer, Special_AbilitySerializer, Zero_Lvl_SpellSerializer, First_Lvl_SpellSerializer, Second_Lvl_SpellSerializer, Third_Lvl_SpellSerializer, Fourth_Lvl_SpellSerializer, Fifth_Lvl_SpellSerializer, Sixth_Lvl_SpellSerializer, Seventh_Lvl_SpellSerializer, Eighth_Lvl_SpellSerializer, Ninth_Lvl_SpellSerializer, NoteSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -117,6 +117,10 @@ class Eighth_Lvl_SpellViewSet(viewsets.ModelViewSet):
 class Ninth_Lvl_SpellViewSet(viewsets.ModelViewSet):
     queryset = Ninth_Lvl_Spell.objects.all()
     serializer_class = Ninth_Lvl_SpellSerializer
+
+class NoteViewSet(viewsets.ModelViewSet):
+    queryset = Note.objects.all()
+    serializer_class = NoteSerializer
     
 # class SpellAPIView(APIView):
 #     """Test Api View"""

@@ -89,6 +89,375 @@
                 },
             }
         });
+
+        Vue.component('character' {
+            props: ['char'],
+            delimiters: ['[[',']]'],
+            data: function() {
+                return {
+                    step: 1,
+                    character: {
+                        id: '',
+                        player_name: '',
+                        user_detail: '',
+                        character_name: '', 
+                        character_class: '',         
+                        diety: '', 
+                        race: '',
+                        homeland: '',
+                        size: '',
+                        gender: '',
+                        age: '',
+                        height: '',
+                        hair_color: '',
+                        eye_color: '',
+                        hit_points: '',
+                        base_speed: '',
+                        speed_with_armour: '',
+                        fly_speed: '',
+                        swim_speed: '',
+                        climb_speed: '',
+                        burrow_speed: '',
+                        initiative: '',
+                        strength: '',
+                        strength_mod: '',
+                        dexterity: '',
+                        dexterity_mod: '',
+                        constitution: '',
+                        constitution_mod: '',
+                        intelligence: '',
+                        intelligence_mod: '',
+                        wisdom: '',
+                        wisdom_mod: '',
+                        charisma: '',
+                        charisma_mod: '',
+                        armor_class: '',
+                        touch_ac: '',
+                        flat_footed_ac: '',
+                        fortitude: '',
+                        reflex: '',
+                        will: '',
+                        base_attack_bonus: '',
+                        spell_resistance: '',
+                        cmb: '',
+                        cmd: '',
+                        weapon: '',
+                        language: '',
+                        acrobatics: '',
+                        appraise: '',
+                        bluff: '',
+                        climb: '',
+                        craft: '',
+                        diplomacy: '',
+                        disable_device: '',
+                        disguise: '',
+                        escape_artist: '',
+                        fly: '',
+                        handle_animal: '',
+                        heal: '',
+                        intimidate: '',
+                        knowledge: '',
+                        linguistics: '',
+                        perception: '',
+                        perform: '',
+                        profession: '',
+                        ride: '',
+                        sense_motive: '',
+                        sleight_of_hand: '',
+                        spellcraft: '',
+                        stealth: '',
+                        survival: '',
+                        swim: '',
+                        use_magic_device: '',
+                        ac_item: '',
+                        item: '',
+                        light_load: '',
+                        medium_load: '',
+                        heavy_load: '',
+                        lift_over_head: '',
+                        lift_off_ground: '',
+                        drag_or_push: '',
+                        copper: '',
+                        silver: '',
+                        gold: '',
+                        platinum: '',
+                        feat: '',
+                        special_ability: '',
+                        spells_per_day: '',
+                        spells_known: '',
+                        domain_or_speciality_magic: '',
+                        zero_lvl_spell: '',
+                        first_lvl_spell: '',
+                        second_lvl_spell: '',
+                        third_lvl_spell: '',
+                        fourth_lvl_spell: '',
+                        fifth_lvl_spell: '',
+                        sixth_lvl_spell: '',
+                        seventh_lvl_spell: '',
+                        eighth_lvl_spell: '',
+                        ninth_lvl_spell: '',
+                        note: '',
+                        xp: '',
+                        xp_next_lvl: '',
+                        img: '',
+                    }
+            },
+            template:`
+                <div class="character-creation">
+                    <form>
+                        <div v-if="step === 1">
+                            <h2>Character Info</h2>
+                            <p>
+                                <label for="character_name">Character Name</label>
+                                <input class="form-control form-control-sm" type="text" id="character_name" name="character_name" v-model="character.character_name" placeholder="character name">
+                            </p>
+                            <p>
+                                <label for="character_class">Class</label>
+                                <input class="form-control form-control-sm" type="text" id="character_class" name="character_class" v-model="character.character_class" placeholder="Class">
+                            </p>
+                                <label for="diety">Diety</label>
+                                <input class="form-control form-control-sm" type="text" id="diety" name="diety" v-model="character.diety" placeholder="Diety">
+                            </p>
+                            <p>
+                                <label for="race">Race</label>
+                                <input class="form-control form-control-sm" type="text" id="race" name="race" v-model="character.race" placeholder="race">
+                            </p>
+                            <p>
+                                <label for="homeland">Homeland</label>
+                                <input class="form-control form-control-sm" type="text" id="homeland" name="homeland" v-model="character.homeland" placeholder="homeland">
+                            </p>
+                            <p>
+                                <label for="size">Size</label>
+                                <input class="form-control form-control-sm" type="text" id="size" name="size" v-model="character.size" placeholder="size">
+                            </p>
+                            <p>
+                                <label for="gender">Gender</label>
+                                <input class="form-control form-control-sm" type="text" id="gender" name="gender" v-model="character.gender" placeholder="gender">
+                            </p>
+                            <p>
+                                <label for="age">Age</label>
+                                <input class="form-control form-control-sm" type="text" id="age" name="age" v-model="character.age" placeholder="age">
+                            </p>
+                            <p>
+                                <label for="height">Height</label>
+                                <input class="form-control form-control-sm" type="text" id="height" name="height" v-model="character.height" placeholder="height">
+                            </p>
+                            <p>
+                                <label for="hair_color">Hair Color</label>
+                                <input class="form-control form-control-sm" type="text" id="hair_color" name="hair_color" v-model="character.hair_color" placeholder="hair color">
+                            </p>
+                            <p>
+                                <label for="eye_color">Eye Color</label>
+                                <input class="form-control form-control-sm" type="text" id="eye_color" name="eye_color" v-model="character.eye_color" placeholder="eye color">
+                            </p>
+                            <button class="btn btn-dark" @click.prevent="next()">Next</button>
+                        </div>
+                        <div v-if="step === 2">
+                            <h2>Ability Score</h2>
+                            <p>
+                                <label for="strength">Strength</label>
+                                <input class="form-control form-control-sm" type="number" id="strength" name="strength" v-model="character.strength" placeholder="strength">
+                            </p>
+                            <p>
+                                <label for="strength_mod">Strength Mod</label>
+                                <input class="form-control form-control-sm" type="number" id="strength_mod" name="strength_mod" v-model="character.strength_mod" placeholder="strength_mod">
+                            </p>
+                            <p>
+                                <label for="dexterity">Dexterity</label>
+                                <input class="form-control form-control-sm" type="number" id="dexterity" name="dexterity" v-model="character.dexterity" placeholder="dexterity">
+                            </p>
+                            <p>
+                                <label for="dexterity_mod">Dexterity Mod</label>
+                                <input class="form-control form-control-sm" type="number" id="dexterity_mod" name="dexterity_mod" v-model="character.dexterity_mod" placeholder="dexterity_mod">
+                            </p>
+                            <p>
+                                <label for="constitution">Constitution</label>
+                                <input class="form-control form-control-sm" type="number" id="constitution" name="constitution" v-model="character.constitution" placeholder="constitution">
+                            </p>
+                            <p>
+                                <label for="constitution_mod">Constitution Mod</label>
+                                <input class="form-control form-control-sm" type="number" id="constitution_mod" name="constitution_mod" v-model="character.constitution_mod" placeholder="constitution_mod">
+                            </p>
+                            <p>
+                                <label for="intelligence">Intelligence</label>
+                                <input class="form-control form-control-sm" type="number" id="intelligence" name="intelligence" v-model="character.intelligence" placeholder="intelligence">
+                            </p>
+                            <p>
+                                <label for="intelligence_mod">Intelligence Mod</label>
+                                <input class="form-control form-control-sm" type="number" id="intelligence_mod" name="intelligence_mod" v-model="character.intelligence_mod" placeholder="intelligence_mod">
+                            </p>
+                            <p>
+                                <label for="wisdom">Wisdom</label>
+                                <input class="form-control form-control-sm" type="number" id="wisdom" name="wisdom" v-model="character.wisdom" placeholder="wisdom">
+                            </p>
+                            <p>
+                                <label for="wisdom_mod">Wisdom Mod</label>
+                                <input class="form-control form-control-sm" type="number" id="wisdom_mod" name="wisdom_mod" v-model="character.wisdom_mod" placeholder="wisdom_mod">
+                            </p>
+                            <p>
+                                <label for="charisma">Charisma</label>
+                                <input class="form-control form-control-sm" type="number" id="charisma" name="charisma" v-model="character.charisma" placeholder="charisma">
+                            </p>
+                            <p>
+                                <label for="charisma_mod">charisma_mod</label>
+                                <input class="form-control form-control-sm" type="number" id="charisma_mod" name="charisma_mod" v-model="character.charisma_mod" placeholder="charisma_mod">
+                            </p>
+                            <button class="btn btn-dark" @click.prevent="prev()">Previous</button>
+                            <button class="btn btn-dark" @click.prevent="next()">Next</button>
+
+                        </div>
+                        <div v-if="step === 3">
+                            <h2>Base Info</h2>
+                            <p>
+                                <label for="hit_points">Hit Points</label>
+                                <input class="form-control form-control-sm" type="number" id="hit_points" name="hit_points" v-model="character.hit_points" placeholder="hit_points">
+                            </p>
+                            <p>
+                                <label for="initiative">Initiative</label>
+                                <input class="form-control form-control-sm" type="number" id="initiative" name="initiative" v-model="character.initiative" placeholder="initiative">
+                            </p>
+                            <p>
+                                <label for="armor_class">Armor Class</label>
+                                <input class="form-control form-control-sm" type="number" id="armor_class" name="armor_class" v-model="character.armor_class" placeholder="armor_class">
+                            </p>
+                            <p>
+                                <label for="touch_ac">Touch Ac</label>
+                                <input class="form-control form-control-sm" type="number" id="touch_ac" name="touch_ac" v-model="character.touch_ac" placeholder="touch_ac">
+                            </p>
+                            <p>
+                                <label for="flat_footed_ac">Flat Footed Ac</label>
+                                <input class="form-control form-control-sm" type="number" id="flat_footed_ac" name="flat_footed_ac" v-model="character.flat_footed_ac" placeholder="flat_footed_ac">
+                            </p>
+                            <p>
+                                <label for="fortitude">Fortitude</label>
+                                <input class="form-control form-control-sm" type="number" id="fortitude" name="fortitude" v-model="character.fortitude" placeholder="fortitude">
+                            </p>
+                            <p>
+                                <label for="reflex">Reflex</label>
+                                <input class="form-control form-control-sm" type="number" id="reflex" name="reflex" v-model="character.reflex" placeholder="reflex">
+                            </p>
+                            <p>
+                                <label for="will">Will</label>
+                                <input class="form-control form-control-sm" type="number" id="will" name="will" v-model="character.will" placeholder="will">
+                            </p>
+                            <p>
+                                <label for="base_attack_bonus">Base Attack Bonus</label>
+                                <input class="form-control form-control-sm" type="number" id="base_attack_bonus" name="base_attack_bonus" v-model="character.base_attack_bonus" placeholder="base_attack_bonus">
+                            </p>
+                            <p>
+                                <label for="spell_resistance">Spell Resistance</label>
+                                <input class="form-control form-control-sm" type="number" id="spell_resistance" name="spell_resistance" v-model="character.spell_resistance" placeholder="spell_resistance">
+                            </p>
+                            <p>
+                                <label for="cmb">Cmb</label>
+                                <input class="form-control form-control-sm" type="number" id="cmb" name="cmb" v-model="character.cmb" placeholder="cmb">
+                            </p>
+                            <p>
+                                <label for="cmd">cmd</label>
+                                <input class="form-control form-control-sm" type="number" id="cmd" name="cmd" v-model="character.cmd" placeholder="cmd">
+                            </p>
+                            <button class="btn btn-dark" @click.prevent="prev()">Previous</button>
+                            <button class="btn btn-dark" @click.prevent="next()">Next</button>
+                        </div>
+                        <div v-if="step === 4">
+                            <h2>Speed Info</h2>
+                            <p>
+                                <label for="base_speed">Base Speed</label>
+                                <input class="form-control form-control-sm" type="number" id="base_speed" name="base_speed" v-model="character.base_speed" placeholder="base_speed">
+                            </p>
+                            <p>
+                                <label for="speed_with_armour">Speed With Armour</label>
+                                <input class="form-control form-control-sm" type="number" id="speed_with_armour" name="speed_with_armour" v-model="character.speed_with_armour" placeholder="speed_with_armour">
+                            </p>
+                            <p>
+                                <label for="fly_speed">Fly Speed</label>
+                                <input class="form-control form-control-sm" type="number" id="fly_speed" name="fly_speed" v-model="character.fly_speed" placeholder="fly_speed">
+                            </p>
+                            <p>
+                                <label for="swim_speed">Swim Speed</label>
+                                <input class="form-control form-control-sm" type="number" id="swim_speed" name="swim_speed" v-model="character.swim_speed" placeholder="swim_speed">
+                            </p>
+                            <p>
+                                <label for="climb_speed">Climb Speed</label>
+                                <input class="form-control form-control-sm" type="number" id="climb_speed" name="climb_speed" v-model="character.climb_speed" placeholder="climb_speed">
+                            </p>
+                            <p>
+                                <label for="burrow_speed">Burrow Speed</label>
+                                <input class="form-control form-control-sm" type="number" id="burrow_speed" name="burrow_speed" v-model="character.burrow_speed" placeholder="burrow_speed">
+                            </p>
+                            <button class="btn btn-dark" @click.prevent="prev()">Previous</button>
+                            <button class="btn btn-dark" @click.prevent="next()">Next</button>
+                        </div>
+                        <div v-if="step === 5">
+                            <h2>Speed Info</h2>
+                            <p>
+                                <label for="base_speed">Base Speed</label>
+                                <input class="form-control form-control-sm" type="number" id="base_speed" name="base_speed" v-model="character.base_speed" placeholder="base_speed">
+                            </p>
+                            <button class="btn btn-dark" @click.prevent="prev()">Add another weapon</button>
+                            <button class="btn btn-dark" @click.prevent="prev()">Previous</button>
+                            <button class="btn btn-dark" @click.prevent="next()">Next</button>
+                        </div>
+                        <div v-if="step === 6">
+
+                        </div>
+                        <div v-if="step === 7">
+
+                        </div>
+                        <div v-if="step === 8">
+
+                        </div>
+                        <div v-if="step === 9">
+
+                        </div>
+                        <div v-if="step === 10">
+
+                        </div>
+                        <div v-if="step === 11">
+
+                        </div>
+                        <div v-if="step === 12">
+
+                        </div>
+                        <div v-if="step === 13">
+
+                        </div>
+                        <div v-if="step === 14">
+
+                        </div>
+                        <div v-if="step === 15">
+
+                        </div>
+                        <div v-if="step === 16">
+
+                        </div>
+                        <div v-if="step === 17">
+
+                        </div>
+                        <div v-if="step === 18">
+
+                        </div>
+                    </form>
+                </div>
+            `,
+            methods: {
+                prev: function(event) {
+                    this.step--;
+                },
+
+                next: function(event) {
+                    this.step++;
+                },
+
+                createChar: function(event) {
+                    axios({
+                        method: 'post'
+                        baseURL: "http://localhost:8000",
+                        url:"/api/character/",
+                        data: this.character, 
+                    })
+            },
+        })
         let vm = new Vue ({
             el:"#app1",
             delimiters: ['[[',']]'],
@@ -97,6 +466,8 @@
                 items: [], 
                 result: [],
                 favorites: [],
+
+                }
             },
             methods: {
                 getSpells: function(event) {
