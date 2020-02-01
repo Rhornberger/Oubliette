@@ -55,7 +55,7 @@ class Language(models.Model):
 class Weapon(models.Model):
     weapon = models.CharField(max_length=50, null=True, blank=True)
     weapon_attack_bonus = models.IntegerField(null=True, blank=True)
-    critical = models.IntegerField(null=True, blank=True)
+    critical = models.CharField(max_length=50, null=True, blank=True)
     weapon_type = models.CharField(max_length=50, null=True, blank=True)
     weapon_range = models.IntegerField(null=True, blank=True)
     ammunition = models.CharField(max_length=50, null=True, blank=True)
@@ -236,6 +236,7 @@ class Character(models.Model):
     gender = models.CharField(max_length=50, null=True, blank=True)
     age = models.CharField(max_length=50, null=True, blank=True)
     height = models.CharField(max_length=50, null=True, blank=True)
+    weight = models.CharField(max_length=50, null=True, blank=True)
     hair_color = models.CharField(max_length=50, null=True, blank=True)
     eye_color = models.CharField(max_length=50, null=True, blank=True)
     hit_points = models.IntegerField(null=True, blank=True)

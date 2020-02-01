@@ -1,7 +1,7 @@
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 
-from .views import UserViewSet, SpellViewSet, ProfileViewSet, CharacterViewSet, CraftViewSet, KnowledgeViewSet, PerformViewSet, ProfessionViewSet, LanguageViewSet, WeaponViewSet, Ac_ItemViewSet, GearViewSet, FeatViewSet, Special_AbilityViewSet, Zero_Lvl_SpellViewSet, First_Lvl_SpellViewSet, Second_Lvl_SpellViewSet, Third_Lvl_SpellViewSet, Fourth_Lvl_SpellViewSet, Fifth_Lvl_SpellViewSet, Sixth_Lvl_SpellViewSet, Seventh_Lvl_SpellViewSet, Eighth_Lvl_SpellViewSet, Ninth_Lvl_SpellViewSet, NoteViewSet #User View sets and spell view sets
+from .views import UserViewSet, SpellViewSet, ProfileViewSet, CharacterViewSet, CraftViewSet, KnowledgeViewSet, PerformViewSet, ProfessionViewSet, LanguageViewSet, WeaponViewSet, Ac_ItemViewSet, GearViewSet, FeatViewSet, Special_AbilityViewSet, Zero_Lvl_SpellViewSet, First_Lvl_SpellViewSet, Second_Lvl_SpellViewSet, Third_Lvl_SpellViewSet, Fourth_Lvl_SpellViewSet, Fifth_Lvl_SpellViewSet, Sixth_Lvl_SpellViewSet, Seventh_Lvl_SpellViewSet, Eighth_Lvl_SpellViewSet, Ninth_Lvl_SpellViewSet, NoteViewSet, RaceViewSet #User View sets and spell view sets
 
 
 # from references import views
@@ -34,6 +34,7 @@ router.register('seventh_lvl_spell', Seventh_Lvl_SpellViewSet, basename='seventh
 router.register('eighth_lvl_spell', Eighth_Lvl_SpellViewSet, basename='eighth_lvl_spell')
 router.register('ninth_lvl_spell', Ninth_Lvl_SpellViewSet, basename='ninth_lvl_spell')
 router.register('note', NoteViewSet, basename='note')
+router.register('race', RaceViewSet, basename='race')
 
 
 urlpatterns = router.urls

@@ -18,8 +18,12 @@
                 </div>
                     <h2>this will hold buttons that will display different information pathways </h2>
                     <button type="button" class="btn btn-dark" v-on:click="getSpells">Spells</button>
-                    <select class="selectpicker" placeholder="spells" v-if="items.length" v-model="selected" @change="itemSelected">
+                    <select class="selectpicker" placeholder="spells" v-if="items.length" v-model="selecteditem" @change="itemSelected">
                         <option v-for="item in items" :value="item.id">[[item.spell_name]]</option>
+                    </select>
+                    <button type="button" class="btn btn-dark" v-on:click="getRaces">Races</button>
+                    <select class="selectpicker" placeholder="races" v-if="races.length" v-model="selectedrace" @change="raceSelected">
+                        <option v-for="race in races" :value="race.id">[[race.race_name]]</option>
                     </select>
             </div>
             <div class="col-md-4 border border-dark container-center">
@@ -52,14 +56,17 @@
                         <div id="reference-display">
                             <ul>
                                 <information
-                                    v-if="Object.keys(result).length"
+                                    v-if="Object.keys(result).length && selectedinfo === 'item'"
                                     v-bind:info="result"
                                 ></information>
+                                <races
+                                    v-if="Object.keys(raceResult).length && selectedinfo === 'race'"
+                                    v-bind:race="raceResult"
+                                ></races>
                             </ul>
                         </div>
                     </div>
                 </div>
-           
             </div>
             <div class="col-md-4 border border-dark container-right">
                 <h2>this will display the full character info of the chosen character</h2>

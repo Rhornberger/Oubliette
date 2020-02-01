@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
-from references.models import Spell
+from references.models import Spell, Race
 from users.models import Profile
 from characters.models import Character
 from characters.models import Craft
@@ -61,6 +61,29 @@ class SpellSerializer(serializers.ModelSerializer):
             'description'
         )
 
+class RaceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Race
+        fields = (
+            'id',
+            'race_name',
+            'general_description',
+            'physical_description',
+            'society',
+            'relations',
+            'alignment_religion',
+            'adventurer',
+            'male_names',
+            'female_names',
+            'racial_traits',
+            'size',
+            'base_speed',
+            'vision',
+            'special_trait',
+            'weapon_familiarity',
+            'languages'
+        )
+
 class CharacterSerializer(serializers.ModelSerializer):
     user_detail = UserSerializer(read_only=True, source="player_name")
     class Meta:
@@ -78,6 +101,7 @@ class CharacterSerializer(serializers.ModelSerializer):
             'gender',
             'age',
             'height',
+            'weight',
             'hair_color',
             'eye_color',
             'hit_points',

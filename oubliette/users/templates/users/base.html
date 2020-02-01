@@ -89,13 +89,69 @@
                 },
             }
         });
-
-        Vue.component('character' {
+        Vue.component('races', {
+            props: ['race'],
+            delimiters: ['[[',']]'],
+            data: function() {
+                return {
+                    id: 1,
+                    text: "",
+                }
+            },
+            //this template will tell the spell info how to display in the center screen under the tab of quick reference
+            template: `
+                <div class="quick-view">
+                    <p><b>Race Name: </b> [[race.race_name]]</p>
+                    <p><b>General Description: </b> [[race.general_description]]</p>
+                    <p><b>Physical Description: </b> [[race.physical_description]]</p>
+                    <p><b>Society: </b> [[race.society]]</p>
+                    <p><b>Relationships: </b> [[race.relations]]</p>
+                    <p><b>Alignment &amp; religion: </b> [[race.alignment_religion]]</p>
+                    <p><b>Adventurers: </b>[[race.adventurer]]</p>
+                    <p><b>Common Male Names: </b> [[race.male_names]]</p>
+                    <p><b>Common Female Name: </b> [[race.female_names]]</p>
+                    <p><b>[[race.race_name]] Racial Traits: </b>[[race.racial_traits]]</p>
+                    <p><b>Base Speed: </b> [[race.base_speed]]</p>
+                    <p><b>Vision: </b> [[race.vision]]</p>
+                    <p><b>Special Traits: </b> [[race.special_trait]]</p>
+                    <p><b>Weapons: </b> [[race.weapon_familiarity]]</p>
+                    <p><b>languages: </b> [[race.languages]]</p>
+                </div>
+            `,
+            methods: {
+                raceSelected: function() {
+                    this.$emit('raceSelected', {id:this.id, text:this.text});
+                    this.id++
+                },
+            }
+        });
+        Vue.component('character', {
             props: ['char'],
             delimiters: ['[[',']]'],
             data: function() {
                 return {
                     step: 1,
+                    weapons: [],
+                    languages: [],
+                    crafts: [],
+                    knowledges: [],
+                    performs: [],
+                    professions: [],
+                    ac_items: [],
+                    items: [],
+                    feats: [],
+                    special_abilities: [],
+                    zero_lvl_spells: [],
+                    first_lvl_spells: [],
+                    second_lvl_spells: [],
+                    third_lvl_spells: [],
+                    fourth_lvl_spells: [],
+                    fifth_lvl_spells: [],
+                    sixth_lvl_spells: [],
+                    seventh_lvl_spells: [],
+                    eighth_lvl_spells: [],
+                    ninth_lvl_spells: [],
+                    notes: [],
                     character: {
                         id: '',
                         player_name: '',
@@ -200,9 +256,92 @@
                         xp: '',
                         xp_next_lvl: '',
                         img: '',
-                    }
+                    },
+                    weapon: {
+                        id: '',
+                        weapon: '',
+                        weapon_attack_bonus: '',
+                        critical: '',
+                        weapon_type: '',
+                        weapon_range: '',
+                        ammunition: '',
+                        damage: '',
+                    },
+                    ac_item: {
+                        armour_class_item: '',
+                        ac_bonus: '',
+                        ac_type: '',
+                        ac_checkpenalty: '',
+                        ac_spellfailure: '',
+                        ac_weight: '',
+                        ac_properties: '',
+                    },
+                    gear: {
+                       item: '', 
+                       item_wt:'',
+                    },
+                    feat: {
+                       feat: '', 
+                    },
+                    special_ability: {
+                        special_ability: '',
+                    },
+                    language: {
+                        language: '',                       
+                    },
+                    profession: {
+                        profession: '',
+                        profession_mod: '',
+                    },
+                    perform: {
+                        perform: '',
+                        perform_mod: '',
+                    }, 
+                    knowledge: {
+                        knowledge: '',
+                        knowledge_mod: '',
+                    },
+                    craft: {
+                        craft: '',
+                        craft_mod: '',
+                    },
+                    note: {
+                        note: '',
+                    },
+                    zero_lvl_spell: {
+                        zero_lvl_spell: '',
+                    },
+                    first_lvl_spell: {
+                        first_lvl_spell: '',
+                    },
+                    second_lvl_spell: {
+                        second_lvl_spell: '',
+                    },
+                    third_Lvl_Spell: {                        
+                        third_lvl_spell: '',
+                    },
+                    fourth_lvl_spell: {
+                        fourth_lvl_spell: '',
+                    },
+                    fifth_lvl_spell: {
+                        fifth_lvl_spell: '',
+                    },
+                    sixth_Lvl_Spell: {
+                        sixth_Lvl_Spell: '',
+                    },
+                    seventh_lvl_spell: {
+                        seventh_lvl_spell: '',
+                    },
+                    eighth_Lvl_Spell: {
+                        eighth_Lvl_Spell: '',
+                    },
+                    ninth_lvl_spell: {
+                        ninth_lvl_spell: '',
+                    },
+                }
             },
-            template:`
+            //this template will tell the form how to display
+            template: `
                 <div class="character-creation">
                     <form>
                         <div v-if="step === 1">
@@ -389,12 +528,12 @@
                             <button class="btn btn-dark" @click.prevent="next()">Next</button>
                         </div>
                         <div v-if="step === 5">
-                            <h2>Speed Info</h2>
+                            <h2>Weapon Info</h2>
                             <p>
                                 <label for="base_speed">Base Speed</label>
                                 <input class="form-control form-control-sm" type="number" id="base_speed" name="base_speed" v-model="character.base_speed" placeholder="base_speed">
                             </p>
-                            <button class="btn btn-dark" @click.prevent="prev()">Add another weapon</button>
+                            <button class="btn btn-dark" @click.prevent="createWeapon()">Create Weapon</button>
                             <button class="btn btn-dark" @click.prevent="prev()">Previous</button>
                             <button class="btn btn-dark" @click.prevent="next()">Next</button>
                         </div>
@@ -451,23 +590,286 @@
 
                 createChar: function(event) {
                     axios({
-                        method: 'post'
+                        method: 'post',
                         baseURL: "http://localhost:8000",
                         url:"/api/character/",
                         data: this.character, 
                     })
-            },
-        })
+                },
+                createWeapon: function(event) {
+                    this.weapons = [];
+                    let key = 'weapon';
+                    axios({
+                        method: 'post',
+                        baseURL: "http://localhost:8000",
+                        url:"/api/weapon/",
+                        data: this.weapons
+                    }).then(res => {
+                        this.createChar.weapons.push(res.data.id);
+                        this.createWeapon = {key:''}
+                    })
+                },
+                addLanguage: function(event) {
+                    this.languages = [];
+                    let key = 'language';
+                    axios({
+                        method: 'post',
+                        baseURL: "http://localhost:8000",
+                        url:"/api/language/",
+                        data: this.languages
+                    }).then(res => {
+                        this.createChar.languges.push(res.data.id)
+                        this.addLanguage = {key: ''}
+                    })
+                },
+                addCraft: function(event) {
+                    this.crafts = [];
+                    let key = 'craft';
+                    axios ({
+                        method: 'post',
+                        baseURL: "http://localhost:8000",
+                        url:"/api/craft/",
+                        data: this.crafts
+                    }).then(res => {
+                        this.createChar.crafts.push(res.data.id)
+                        this.addCraft = {key: ''}
+                    })
+                },
+                addKnowledge: function(event) {
+                    this.knowledges = [];
+                    let key = 'knowledge';
+                    axios ({
+                        method: 'post',
+                        baseURL: "http://localhost:8000",
+                        url:"/api/knowledge/",
+                        data: this.knowledges
+                    }).then(res => {
+                        this.createChar.knowledges.push(res.data.id)
+                        this.addKnowledge = {key: ''}
+                    })
+                },
+                addPerform: function(event) {
+                    this.performs = [];
+                    let key = 'perform';
+                    axios ({
+                        method: 'post',
+                        baseURL: "http://localhost:8000",
+                        url:"/api/perform/",
+                        data: this.crafts
+                    }).then(res => {
+                        this.createChar.performs.push(res.data.id)
+                        this.addPerform = {key: ''}
+                    })
+                },
+                addProfession: function(event) {
+                    this.professions = [];
+                    let key = 'profession';
+                    axios ({
+                        method: 'post',
+                        baseURL: "http://localhost:8000",
+                        url:"/api/profession/",
+                        data: this.professions
+                    }).then(res => {
+                        this.createChar.professions.push(res.data.id)
+                        this.addProfession = {key: ''}
+                    })
+                },
+                addAc_item: function(event) {
+                    this.ac_items = [];
+                    let key = 'armour_class_item';
+                    axios ({
+                        method: 'post',
+                        baseURL: "http://localhost:8000",
+                        url:"/api/ac_item/",
+                        data: this.ac_items
+                    }).then(res => {
+                        this.createChar.ac_items.push(res.data.id)
+                        this.addAc_item = {key: ''}
+                    })
+                },
+                addItem: function(event) {
+                    this.items = [];
+                    let key = 'item';
+                    axios ({
+                        method: 'post',
+                        baseURL: "http://localhost:8000",
+                        url:"/api/item/",
+                        data: this.items
+                    }).then(res => {
+                        this.createChar.items.push(res.data.id)
+                        this.addItem = {key: ''}
+                    })
+                },
+                addFeat: function(event) {
+                    this.feats = [];
+                    let key = 'feat';
+                    axios ({
+                        method: 'post',
+                        baseURL: "http://localhost:8000",
+                        url:"/api/feat/",
+                        data: this.feats
+                    }).then(res => {
+                        this.createChar.crafts.push(res.data.id)
+                        this.addCraft = {key: ''}
+                    })
+                },
+                addSpecialAbility: function(event) {
+                    this.special_abilities = [];
+                    let key = 'special_ability';
+                    axios ({
+                        method: 'post',
+                        baseURL: "http://localhost:8000",
+                        url:"/api/special_ability/",
+                        data: this.special_abilities
+                    }).then(res => {
+                        this.createChar.special_abilities.push(res.data.id)
+                        this.addSpecialAbility = {key: ''}
+                    })
+                },
+                add0_lvl_spl: function(event) {
+                    this.zero_lvl_spells = [];
+                    let key = 'zero_lvl_spell';
+                    axios ({
+                        method: 'post',
+                        baseURL: "http://localhost:8000",
+                        url:"/api/zero_lvl_spell/",
+                        data: this.zero_lvl_spells
+                    }).then(res => {
+                        this.createChar.zero_lvl_spells.push(res.data.id)
+                        this.add0_lvl_spl = {key: ''}
+                    })
+                },
+                add1_lvl_spl: function(event) {
+                    this.first_lvl_spells = [];
+                    let key = 'first_lvl_spell';
+                    axios ({
+                        method: 'post',
+                        baseURL: "http://localhost:8000",
+                        url:"/api/first_lvl_spell/",
+                        data: this.first_lvl_spells
+                    }).then(res => {
+                        this.createChar.first_lvl_spells.push(res.data.id)
+                        this.add1_lvl_spl = {key: ''}
+                    })
+                },
+                add2_lvl_spl: function(event) {
+                    this.second_lvl_spells = [];
+                    let key = 'second_lvl_spell';
+                    axios ({
+                        method: 'post',
+                        baseURL: "http://localhost:8000",
+                        url:"/api/second_lvl_spell/",
+                        data: this.second_lvl_spells
+                    }).then(res => {
+                        this.createChar.second_lvl_spells.push(res.data.id)
+                        this.add2_lvl_spl = {key: ''}
+                    })
+                },
+                add3_lvl_spl: function(event) {
+                    this.third_lvl_spells = [];
+                    let key = 'third_lvl_spell';
+                    axios ({
+                        method: 'post',
+                        baseURL: "http://localhost:8000",
+                        url:"/api/third_lvl_spell/",
+                        data: this.third_lvl_spells
+                    }).then(res => {
+                        this.createChar.third_lvl_spells.push(res.data.id)
+                        this.add3_lvl_spl = {key: ''}
+                    })
+                },
+                add4_lvl_spl: function(event) {
+                    this.fourth_lvl_spells = [];
+                    let key = 'fourth_lvl_spell';
+                    axios ({
+                        method: 'post',
+                        baseURL: "http://localhost:8000",
+                        url:"/api/fourth_lvl_spell/",
+                        data: this.fourth_lvl_spells
+                    }).then(res => {
+                        this.createChar.fourth_lvl_spells.push(res.data.id)
+                        this.add4_lvl_spl = {key: ''}
+                    })
+                },
+                add5_lvl_spl: function(event) {
+                    this.fifth_lvl_spells = [];
+                    let key = 'fifth_lvl_spell';
+                    axios ({
+                        method: 'post',
+                        baseURL: "http://localhost:8000",
+                        url:"/api/fifth_lvl_spell/",
+                        data: this.fifth_lvl_spells
+                    }).then(res => {
+                        this.createChar.fifth_lvl_spells.push(res.data.id)
+                        this.add5_lvl_spl = {key: ''}
+                    })
+                },
+                add6_lvl_spl: function(event) {
+                    this.sixth_lvl_spells = [];
+                    let key = 'sixth_lvl_spell';
+                    axios ({
+                        method: 'post',
+                        baseURL: "http://localhost:8000",
+                        url:"/api/sixth_lvl_spell/",
+                        data: this.sixth_lvl_spells
+                    }).then(res => {
+                        this.createChar.sixth_lvl_spells.push(res.data.id)
+                        this.add6_lvl_spl = {key: ''}
+                    })
+                },
+                add7_lvl_spl: function(event) {
+                    this.seventh_lvl_spells = [];
+                    let key = 'seventh_lvl_spell';
+                    axios ({
+                        method: 'post',
+                        baseURL: "http://localhost:8000",
+                        url:"/api/seventh_lvl_spell/",
+                        data: this.seventh_lvl_spells
+                    }).then(res => {
+                        this.createChar.seventh_lvl_spells.push(res.data.id)
+                        this.add7_lvl_spl = {key: ''}
+                    })
+                },
+                add8_lvl_spl: function(event) {
+                    this.eighth_lvl_spells = [];
+                    let key = 'eighth_lvl_spell';
+                    axios ({
+                        method: 'post',
+                        baseURL: "http://localhost:8000",
+                        url:"/api/eighth_lvl_spell/",
+                        data: this.eighth_lvl_spells
+                    }).then(res => {
+                        this.createChar.eighth_lvl_spells.push(res.data.id)
+                        this.add8_lvl_spl = {key: ''}
+                    })
+                },
+                add9_lvl_spl: function(event) {
+                    this.ninth_lvl_spells = [];
+                    let key = 'ninth_lvl_spell';
+                    axios ({
+                        method: 'post',
+                        baseURL: "http://localhost:8000",
+                        url:"/api/second_lvl_spell/",
+                        data: this.ninth_lvl_spells
+                    }).then(res => {
+                        this.createChar.ninth_lvl_spells.push(res.data.id)
+                        this.add9_lvl_spl = {key: ''}
+                    })
+                },
+            }
+        });
         let vm = new Vue ({
             el:"#app1",
             delimiters: ['[[',']]'],
             data: {
-                selected: '',
+                selectedinfo: '',
+                selecteditem: '',
+                selectedrace: '',
                 items: [], 
                 result: [],
                 favorites: [],
-
-                }
+                races: [],
+                raceResult: [],
             },
             methods: {
                 getSpells: function(event) {
@@ -485,16 +887,46 @@
                     }));
                     //console.log(items)
                 },
-                
+
+                getRaces: function(event) {
+                    this.races = [];
+                    let key = 'race_name';
+                    // this will retrive race info from the api
+                    axios ({
+                        method: "get",
+                        baseURL: "http://localhost:8000",
+                        url:"/api/race/",
+                    }).then(res=> this.races = res.data.map((race) => {
+                        race.label = race[key];
+                        console.log(race.race_name)
+                        return race;
+                    }));
+                    // console.log(races)
+                },
                 // this is the dropdown select menu that will populate with the list of spells in alphabetical order
                 itemSelected: function() {
-                    console.log(this.selected)
+                    console.log(this.selecteditem)
                     axios ({
                         method: "get",
                         baseUrl: "http://localhost:8000/",
-                        url: "/api/spell/" + this.selected + "/",
-                    }).then(res=> this.result = res.data)
+                        url: "/api/spell/" + this.selecteditem + "/",
+                    }).then(res=> {
+                        this.result = res.data;
+                        this.selectedinfo = "item";
+                    })
                     console.log(this.result)
+                },
+                raceSelected: function() {
+                    console.log(this.selectedrace)
+                    axios ({
+                        method: "get",
+                        baseUrl: "http://localhost:8000/",
+                        url: "/api/race/" + this.selectedrace + "/",
+                    }).then(res=> {
+                        this.raceResult = res.data;
+                        this.selectedinfo = "race";
+                    })
+                    console.log(this.raceResult)
                 }
             }
         });
