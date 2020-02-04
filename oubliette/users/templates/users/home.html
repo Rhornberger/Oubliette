@@ -28,29 +28,34 @@
             </div>
             <div class="col-md-4 border border-dark container-center">
                 <nav>
-                    <div class="nav nav-tabs" id="myTab" role="tablist">
+                    <div class="nav nav-tabs border-dark" id="myTab" role="tablist">
                         <a class="nav-item nav-link active" id="nav-character-tab" data-toggle="tab" href="#nav-character" role="tab" aria-controls="characters" aria-selected="true">Characters</a>
                         <a class="nav-item nav-link" id="nav-quick-references-tab" data-toggle="tab" href="#nav-quick-references" role="tab"
                         aria-controls="quick-references" aria-selected="false">Quick References</a>
                     </div>
                 </nav>
-                <div class="tab-content" id="nav-tabContent">
+                <div class="tab-content " id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-character" role="tabpanel" aria-labelledby="nav-character-tab">
                             <h3>New Character</h3>
                             <h4>click below to get started</h4>
                             <button type="button" class="btn btn-dark" >Click</button>
-                        {% if characters %}
-                            {% for character in characters %}
-                                <div class="card" style="width: 18rem;">
-                                    <img src="..." class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <div class="row">
+                            <div class="container1">
+                                <div v-if="characters.length"> 
+                                    <div v-for="character in characters">
+                                        <div class="card text-black border-dark mb-3" id="card" style="max-width: 18rem;">
+                                            <img :src="character.img" class="card-img-top img-thumbnail" alt="...">
+                                            <div class="card-body">
+                                                <h5 class="card-header text-black">[[character.character_name]]</h5>
+                                                <p class="card_text text-black">[[character.race]]</p>
+                                                <p class="card-text text-black">[[character.character_class]]</p>
+                                                <a href="#" @click="charSelected(character.id)" class="btn btn-dark">more info</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            {% endfor %}
-                        {% endif %}
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="nav-quick-references" role="tabpanel" aria-labelledby="nav-quick-references-tab">
                         <div id="reference-display">
@@ -69,7 +74,12 @@
                 </div>
             </div>
             <div class="col-md-4 border border-dark container-right">
-                <h2>this will display the full character info of the chosen character</h2>
+                <div id="character-info">
+                    <character 
+                        v-if="Object.keys(charResult).length"
+                        v-bind:char="charResult"
+                    ></character>
+                </div>
             </div>
         </div>    
     </div>

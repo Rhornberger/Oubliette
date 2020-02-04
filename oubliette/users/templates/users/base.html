@@ -125,8 +125,116 @@
                 },
             }
         });
+
         Vue.component('character', {
             props: ['char'],
+            delimiters: ['[[',']]'],
+            data: function() {
+                return {
+                    id: 1,
+                    text: "",
+                }
+            },
+            //This template will tell the character info from the DB how to display in the far right window
+            template: `
+                <div class="char-container">
+                    <nav>
+                        <div class="nav nav-tabs border-dark" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-char-tab" data-toggle="tab" href="#nav-char" role="tab" aria-controls="nav-char" aria-selected="true">Character</a>
+                            <a class="nav-item nav-link" id="nav-ability-tab" data-toggle="tab" href="#nav-ability" role="tab" aria-controls="nav-ability" aria-selected="false">Abilities</a>
+                            <a class="nav-item nav-link" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="false">Info</a>
+                            <a class="nav-item nav-link" id="nav-skill-tab" data-toggle="tab" href="#nav-skill" role="tab" aria-controls="nav-skill" aria-selected="false">Skills</a>
+                            <a class="nav-item nav-link" id="nav-weapon-tab" data-toggle="tab" href="#nav-weapon" role="tab" aria-controls="nav-weapon" aria-selected="false">Weapons</a>
+                            <a class="nav-item nav-link" id="nav-armor-tab" data-toggle="tab" href="#nav-armor" role="tab" aria-controls="nav-armor" aria-selected="false">Armor</a>
+                            <a class="nav-item nav-link" id="nav-backpack-tab" data-toggle="tab" href="#nav-backpack" role="tab" aria-controls="nav-backpack" aria-selected="false">Backpack</a>
+                            <a class="nav-item nav-link" id="nav-feat-tab" data-toggle="tab" href="#nav-feat" role="tab" aria-controls="nav-feat" aria-selected="false">Feats</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-char" role="tabpanel" aria-labelledby="nav-char-tab">
+                            <p><b>Character Name: </b>[[char.character_name]]</p>
+                            <p><b>Character Class: </b>[[char.character_class]]</p>
+                            <p><b>Character Race: </b>[[char.race]]</p>
+                            <p><b>Character Alignment: </b>[[char.Alignment]]</p>
+                            <p><b>Character Size: </b>[[char.size]]</p>
+                            <p><b>Character Gender: </b>[[char.gender]]</p>
+                            <p><b>Character Age: </b>[[char.age]]</p>
+                            <p><b>Character Height: </b>[[char.height]]</p>
+                            <p><b>Character Hair Color: </b>[[char.hair_color]]</p>
+                            <p><b>Character Eye Color: </b>[[char.eye_color]]</p>
+                        </div>
+                        <div class="tab-pane fade" id="nav-ability" role="tabpanel" aria-labelledby="nav-ability-tab">
+                            <p><b>Strength: </b>[[char.strength]]</p>
+                            <p><b>Strength Mod: </b>+[[char.strength_mod]]</p>
+                            <p><b>Dexterity: </b>[[char.dexterity]]</p>
+                            <p><b>Dexterity Mod: </b>+[[char.dexterity_mod]]</p>
+                            <p><b>Constitution: </b>[[char.constitution]]</p>
+                            <p><b>Strength Mod: </b>+[[char.constitution_mod]]</p>
+                            <p><b>Intelligence: </b>[[char.intelligence]]</p>
+                            <p><b>Intelligence Mod: </b>+[[char.intelligence_mod]]</p>
+                            <p><b>Wisdom: </b>[[char.wisdom]]</p>
+                            <p><b>Wisdom Mod: </b>+[[char.wisdom_mod]]</p>
+                            <p><b>Charisma: </b>[[char.charisma]]</p>
+                            <p><b>Intelligence Mod: </b>+[[char.charisma_mod]]</p>
+                        </div>
+                        <div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
+                            <p><b>Hit Points: </b>[[char.hit_points]]</p>
+                            <p><b>Base Speed: </b>[[char.base_speed]]</p>
+                            <p><b>Hit Points: </b>[[char.speed_with_armour]]</p>
+                            <p><b>Initiative: </b>[[char.initiative]]</p>
+                            <p><b>Armor Class: </b>[[char.armor_class]]</p>
+                            <p><b>Touch Armor Class: </b>[[char.touch_ac]]</p>
+                            <p><b>Flat Footed Aromor Class: </b>[[char.flat_footed_ac]]</p>
+                            <p><b>Fortitude: </b>[[char.fortitude]]</p>
+                            <p><b>Reflex: </b>[[char.reflex]]</p>
+                            <p><b>Will: </b>[[char.will]]</p>
+                            <p><b>Base Attack Bonus: </b>+[[char.base_attack_bonus]]</p>
+                        </div>
+                        <div class="tab-pane fade" id="nav-skill" role="tabpanel" aria-labelledby="nav-skill-tab">
+                            <p v-for="item in char.language_info"><b>Language: </b>[[item.language]]</p>
+                            <p><b>Dimplomacy: </b>+[[char.diplomacy]]</p>
+                            <p><b>Handle Animal: </b>+[[char.handle_animal]]</p>
+                            <p><b>Intimidate: </b>+[[char.intimidate]]</p>
+                            <p v-for="item in char.knowledge_info"><b>Knowledge: </b>[[item.knowledge]]</p>
+                            <p><b>Knowledge Modifier: </b>+[[char.knowledge_mod]]</p>
+                            <p><b>Perception: </b>+[[char.perception]]</p>
+                            <p><b>Survival: </b>+[[char.survival]]</p>
+                        </div>
+                        <div class="tab-pane fade" id="nav-weapon" role="tabpanel" aria-labelledby="nav-weapon-tab">
+                            <p v-for="item in char.weapon_info"><b>Weapon: </b>[[item.weapon]]</p>
+                        </div>
+                        <div class="tab-pane fade" id="nav-armor" role="tabpanel" aria-labelledby="nav-armor-tab">
+                            <p v-for="item in char.ac_item_info"><b>Armor: </b>[[item.armour_class_item]]</p>
+                        </div>
+                        <div class="tab-pane fade" id="nav-backpack" role="tabpanel" aria-labelledby="nav-backpack-tab">
+                            <p><b>Backpack</b></p>
+                            <p v-for="item in char.gear_info"><b></b>[[item.item]]</p>
+                            <p><b>Amount that can be Moved</b></p>
+                            <p><b>Light Load: </b>[[char.light_load]] lbs</p>
+                            <p><b>Medium Load: </b>[[char.medium_load]] lbs</p>
+                            <p><b>Heavy Load: </b>[[char.heavy_load]] lbs</p>
+                            <p><b>Lift Over Head: </b>[[char.lift_over_head]] lbs</p>
+                            <p><b>Lift Off Ground: </b>[[char.lift_off_ground]] lbs</p>
+                            <p><b>Drag or Push: </b>[[char.drag_or_push]] lbs</p>
+                            <p><b>Money</b></p>
+                            <p><b>Gold: </b>[[char.gold]]</p>
+                        </div>
+                        <div class="tab-pane fade" id="nav-feat" role="tabpanel" aria-labelledby="nav-feat-tab">
+                            <p><b>Feats</b></p>
+                            <p v-for="item in char.feat_info"><b></b>[[item.feat]]</p>
+                        </div>
+                    </div> 
+                </div>
+            `,
+            methods: {
+                charSelected: function() {
+                    this.$emit('charSelected', {id:this.id, text:this.text})
+                    this.id++
+                },
+            }
+        }),
+        Vue.component('character-form', {
+            props: ['char-form'],
             delimiters: ['[[',']]'],
             data: function() {
                 return {
@@ -865,11 +973,14 @@
                 selectedinfo: '',
                 selecteditem: '',
                 selectedrace: '',
+                selectedChar: '', 
                 items: [], 
                 result: [],
                 favorites: [],
                 races: [],
                 raceResult: [],
+                characters: [],
+                charResult: [],
             },
             methods: {
                 getSpells: function(event) {
@@ -903,6 +1014,21 @@
                     }));
                     // console.log(races)
                 },
+
+                getCharacters: function() {
+                    this.characters = [];
+                    let key = 'character_name'
+                    axios ({
+                        method: "get",
+                        baseURL: "http://localhost:8000",
+                        url:"/api/character/",
+                    }).then(res=> this.characters = res.data.map((character) =>{
+                        character.label = character[key];
+                        console.log(character)
+                        return character
+                    }));
+                },
+
                 // this is the dropdown select menu that will populate with the list of spells in alphabetical order
                 itemSelected: function() {
                     console.log(this.selecteditem)
@@ -927,8 +1053,22 @@
                         this.selectedinfo = "race";
                     })
                     console.log(this.raceResult)
+                },
+                charSelected: function(id) {
+                    console.log(this.selectedChar)
+                    axios ({
+                        method: "get",
+                        baseUrl: "http://localhost:8000/",
+                        url: "/api/character/" + id + "/",
+                    }).then(res=> {
+                        this.charResult = res.data;
+                        this.selectedChar = "character";
+                    })
                 }
-            }
+            },
+            mounted: function() {
+                this.getCharacters();
+            },
         });
     </script>
 </body>

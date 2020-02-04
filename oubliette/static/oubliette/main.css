@@ -8,12 +8,16 @@ h1, h2, h3, h4, h5, h6 {
     color: #030303;
 }
 
+p {
+    color: whitesmoke;
+}
+
 ul {
     margin: 0;
 }
 
 .bg-steel {
-    background-color: #5a2925;
+    background-color: #374350;
 }
 
 .site-header .navbar-nav .nav-link {
@@ -128,37 +132,35 @@ a.article-title:hover {
 
 .media-body h2, p {
     color: black;
-    text-shadow: 1px 1px rgb(114, 112, 112);
+    /* text-shadow: 1px 1px rgb(114, 112, 112); */
 }
 
 .media-body p {
     color: black;
-    text-shadow: 1px 1px rgb(114, 112, 112);
+    /* text-shadow: 1px 1px rgb(114, 112, 112); */
 }
 
 .btn {
-    color: #5a2925;
-    text-shadow: 1px 1px rgb(114, 112, 112);
+    color: #eaedf1;
 }
 
 .btn-outline-info {
-    border-color: #5a2925!important;
+    border-color: #374350!important;
 }
 
 .text-muted {
-    color: #5a2925!important;
-    text-shadow: 1px 1px rgb(114, 112, 112);
+    color: #374350!important;
 }
 
 .form-group a {
-    color: #5a2925!important;
+    color: #374350!important;
     text-shadow: 1px 1px rgb(114, 112, 112);
     text-decoration: none;
     background-color: transparent;
 }
 
 .form-group a:hover {
-    color: #41211e!important;
+    color: #374350!important;
     text-shadow: 1px 1px rgb(114, 112, 112);
 }
 
@@ -178,25 +180,43 @@ a.article-title:hover {
 }
 
 .link1 {
-    color: #5a2925;
-    text-shadow: 1px 1px rgb(153, 152, 152);
+    color: #374350;
 }
 
 .link1:hover {
-    color: #41211e;
+    color: #374350;
     text-shadow: 1px 1px rgb(114, 112, 112);
+}
+
+.nav-item {
+    color: whitesmoke;
+}
+
+.nav_item:hover {
+    color: #374350;
 }
 
 .about-container {
     padding-top: 15px;
-    padding-left: 325px;
+    /* padding-left: 325px; */
 }
 
 .container-about {
-    background: rgba(122, 120, 120, 0.582);
+    background: rgba(122, 120, 120, 0.781);
 }
 
-.container-about p {
-    color: rgb(7, 7, 7);
-    text-shadow: none;
+.container-about p, h4 {
+    color:rgb(17, 17, 17);
+}
+
+.card {
+    background-image: url(/media/Parchment.00.jpg);
+}
+
+p, b {
+    color: black;
+}
+
+p {
+    color: rgb(250, 250, 250);
 }

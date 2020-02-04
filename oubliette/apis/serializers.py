@@ -84,116 +84,27 @@ class RaceSerializer(serializers.ModelSerializer):
             'languages'
         )
 
-class CharacterSerializer(serializers.ModelSerializer):
-    user_detail = UserSerializer(read_only=True, source="player_name")
+class WeaponSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Character
+        model = Weapon
         fields = (
             'id',
-            'player_name',
-            'user_detail',
-            'character_name', 
-            'character_class',         
-            'diety', 
-            'race',
-            'homeland',
-            'size',
-            'gender',
-            'age',
-            'height',
-            'weight',
-            'hair_color',
-            'eye_color',
-            'hit_points',
-            'base_speed',
-            'speed_with_armour',
-            'fly_speed',
-            'swim_speed',
-            'climb_speed',
-            'burrow_speed',
-            'initiative',
-            'strength',
-            'strength_mod',
-            'dexterity',
-            'dexterity_mod',
-            'constitution',
-            'constitution_mod',
-            'intelligence',
-            'intelligence_mod',
-            'wisdom',
-            'wisdom_mod',
-            'charisma',
-            'charisma_mod',
-            'armor_class',
-            'touch_ac',
-            'flat_footed_ac',
-            'fortitude',
-            'reflex',
-            'will',
-            'base_attack_bonus',
-            'spell_resistance',
-            'cmb',
-            'cmd',
-            'weapon',
-            'language',
-            'acrobatics',
-            'appraise',
-            'bluff',
-            'climb',
-            'craft',
-            'diplomacy',
-            'disable_device',
-            'disguise',
-            'escape_artist',
-            'fly',
-            'handle_animal',
-            'heal',
-            'intimidate',
-            'knowledge',
-            'linguistics',
-            'perception',
-            'perform',
-            'profession',
-            'ride',
-            'sense_motive',
-            'sleight_of_hand',
-            'spellcraft',
-            'stealth',
-            'survival',
-            'swim',
-            'use_magic_device',
-            'ac_item',
-            'item',
-            'light_load',
-            'medium_load',
-            'heavy_load',
-            'lift_over_head',
-            'lift_off_ground',
-            'drag_or_push',
-            'copper',
-            'silver',
-            'gold',
-            'platinum',
-            'feat',
-            'special_ability',
-            'spells_per_day',
-            'spells_known',
-            'domain_or_speciality_magic',
-            'zero_lvl_spell',
-            'first_lvl_spell',
-            'second_lvl_spell',
-            'third_lvl_spell',
-            'fourth_lvl_spell',
-            'fifth_lvl_spell',
-            'sixth_lvl_spell',
-            'seventh_lvl_spell',
-            'eighth_lvl_spell',
-            'ninth_lvl_spell',
-            'note',
-            'xp',
-            'xp_next_lvl',
-            'img',    
+            'weapon', 
+            'weapon_category',
+            'weapon_class',
+            'weapon_price',
+            'weapon_s_dmg',
+            'weapon_m_dmg',
+            'weapon_weight',
+            'weapon_special',
+            'weapon_attack_bonus', 
+            'critical', 
+            'weapon_type', 
+            'weapon_range', 
+            'ammunition', 
         )
+
+
 
 class CraftSerializer(serializers.ModelSerializer):
     class Meta:
@@ -201,7 +112,6 @@ class CraftSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'craft',
-            'craft_mod'
         )
 
 class KnowledgeSerializer(serializers.ModelSerializer):
@@ -210,7 +120,6 @@ class KnowledgeSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'knowledge',
-            'knowledge_mod'
         )
 
 class PerformSerializer(serializers.ModelSerializer):
@@ -219,7 +128,6 @@ class PerformSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'perform',
-            'perform_mod'
         )
 
 class ProfessionSerializer(serializers.ModelSerializer):
@@ -228,7 +136,6 @@ class ProfessionSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'profession',
-            'profession_mod'
         )
 
 class LanguageSerializer(serializers.ModelSerializer):
@@ -237,32 +144,26 @@ class LanguageSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'language',
+            'lan_speakers',
         )
 
-class WeaponSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Weapon
-        fields = (
-            'id',
-            'weapon', 
-            'weapon_attack_bonus', 
-            'critical', 
-            'weapon_type', 
-            'weapon_range', 
-            'ammunition', 
-            'damage'
-        )
+
 
 class Ac_ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ac_Item
         fields = (
             'id',
-            'armour_class_item', 
-            'ac_bonus', 'ac_type', 
+            'armour_class_item',
+            'ac_cost',
+            'ac_speed_b30',
+            'ac_speed_b20', 
+            'ac_bonus', 
+            'ac_type', 
             'ac_checkpenalty', 
             'ac_spellfailure', 
-            'ac_weight', 
+            'ac_weight',
+            'ac_max_dex', 
             'ac_properties'
         )
 
@@ -272,7 +173,9 @@ class GearSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'item',
-            'item_wt'
+            'item_wt',
+            'item_cost',
+            'item_type'
         )
 
 class FeatSerializer(serializers.ModelSerializer):
@@ -280,7 +183,12 @@ class FeatSerializer(serializers.ModelSerializer):
         model = Feat
         fields = (
             'id',
-            'feat',
+            'feat', 
+            'feat_benefit', 
+            'feat_type', 
+            'feat_prerequ', 
+            'feat_normal', 
+            'feat_special',
         )
 
 class Special_AbilitySerializer(serializers.ModelSerializer):
@@ -377,4 +285,140 @@ class NoteSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'note'
+        )
+
+class CharacterSerializer(serializers.ModelSerializer):
+    user_detail = UserSerializer(read_only=True, source="player_name")
+    weapon_info = WeaponSerializer(read_only=True, many=True, source="weapon")
+    language_info = LanguageSerializer(read_only=True, many=True, source="language")
+    craft_info = CraftSerializer(read_only=True, many=True, source="craft")
+    knowledge_info = KnowledgeSerializer(read_only=True, many=True, source="knowledge")
+    ac_item_info = Ac_ItemSerializer(read_only=True, many=True, source="ac_item")
+    gear_info = GearSerializer(read_only=True, many=True, source="gear")
+    feat_info = FeatSerializer(read_only=True, many=True, source="feat")
+    special_ability_info = Special_AbilitySerializer(read_only=True, many=True, source="special_ability")
+    note_info = NoteSerializer(read_only=True, many=True, source="note")
+    perform_info = PerformSerializer(read_only=True, many=True, source="perform")
+    class Meta:
+        model = Character
+        fields = (
+            'id',
+            'player_name',
+            'user_detail',
+            'character_name', 
+            'character_class',         
+            'diety', 
+            'Alignment',
+            'race',
+            'homeland',
+            'size',
+            'gender',
+            'age',
+            'height',
+            'weight',
+            'hair_color',
+            'eye_color',
+            'hit_points',
+            'base_speed',
+            'speed_with_armour',
+            'fly_speed',
+            'swim_speed',
+            'climb_speed',
+            'burrow_speed',
+            'initiative',
+            'strength',
+            'strength_mod',
+            'dexterity',
+            'dexterity_mod',
+            'constitution',
+            'constitution_mod',
+            'intelligence',
+            'intelligence_mod',
+            'wisdom',
+            'wisdom_mod',
+            'charisma',
+            'charisma_mod',
+            'armor_class',
+            'touch_ac',
+            'flat_footed_ac',
+            'fortitude',
+            'reflex',
+            'will',
+            'base_attack_bonus',
+            'spell_resistance',
+            'cmb',
+            'cmd',
+            'weapon',
+            'weapon_info',
+            'language',
+            'language_info',
+            'acrobatics',
+            'appraise',
+            'bluff',
+            'climb',
+            'craft',
+            'craft_info',
+            'craft_mod',
+            'diplomacy',
+            'disable_device',
+            'disguise',
+            'escape_artist',
+            'fly',
+            'handle_animal',
+            'heal',
+            'intimidate',
+            'knowledge',
+            'knowledge_info',
+            'knowledge_mod',
+            'linguistics',
+            'perception',
+            'perform',
+            'perform_info',
+            'perform_mod',
+            'profession',
+            'profession_mod',
+            'ride',
+            'sense_motive',
+            'sleight_of_hand',
+            'spellcraft',
+            'stealth',
+            'survival',
+            'swim',
+            'use_magic_device',
+            'ac_item',
+            'ac_item_info',
+            'gear',
+            'gear_info',
+            'light_load',
+            'medium_load',
+            'heavy_load',
+            'lift_over_head',
+            'lift_off_ground',
+            'drag_or_push',
+            'copper',
+            'silver',
+            'gold',
+            'platinum',
+            'feat',
+            'feat_info',
+            'special_ability',
+            'special_ability_info',
+            'spells_per_day',
+            'spells_known',
+            'domain_or_speciality_magic',
+            'zero_lvl_spell',
+            'first_lvl_spell',
+            'second_lvl_spell',
+            'third_lvl_spell',
+            'fourth_lvl_spell',
+            'fifth_lvl_spell',
+            'sixth_lvl_spell',
+            'seventh_lvl_spell',
+            'eighth_lvl_spell',
+            'ninth_lvl_spell',
+            'note',
+            'note_info',
+            'xp',
+            'xp_next_lvl',
+            'img',    
         )
