@@ -85,12 +85,18 @@ a.article-title:hover {
 }
 
 .account-heading {
+    padding-top: 25px;
     font-size: 2.5rem;
 }
 
 .row{
     padding-top: 25px;
     justify-content: space-around;
+}
+
+.logout-container {
+    /* padding-top: 25px; */
+    background: rgba(122, 120, 120, 0.582);
 }
 
 .container-left {
@@ -165,13 +171,13 @@ a.article-title:hover {
 }
 
 .logout-text {
-    color: rgb(206, 198, 185);
-    text-shadow: 1px 1px rgb(12, 12, 12);
+    color: black;
+    /* text-shadow: 1px 1px rgb(12, 12, 12); */
 }
 
 .logout-text2 {
-    color: rgb(206, 198, 185);
-    text-shadow: 1px 1px rgb(12, 12, 12);
+    color: black;
+    /* text-shadow: 1px 1px rgb(12, 12, 12); */
 }
 
 .text-muted1 {
@@ -196,6 +202,18 @@ a.article-title:hover {
     color: #374350;
 }
 
+.container-logout {
+    padding-top: 15px;
+}
+
+.container-login {
+    padding-top: 15px;
+}
+
+.container-profile {
+    padding-top: 15px;
+}
+
 .about-container {
     padding-top: 15px;
     /* padding-left: 325px; */
@@ -218,5 +236,9 @@ p, b {
 }
 
 p {
+    color: rgb(250, 250, 250);
+}
+
+.legend {
     color: rgb(250, 250, 250);
 }

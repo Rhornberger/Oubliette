@@ -16,7 +16,7 @@
                         <img class="rounded-circle account-img" src="{{ user.profile.img.url }}">
                         <h3>{{ user.username }}</h3>
                 </div>
-                    <h2>this will hold buttons that will display different information pathways </h2>
+                    <h2>What information would you like to see.</h2>
                     <button type="button" class="btn btn-dark" v-on:click="getSpells">Spells</button>
                     <select class="selectpicker" placeholder="spells" v-if="items.length" v-model="selecteditem" @change="itemSelected">
                         <option v-for="item in items" :value="item.id">[[item.spell_name]]</option>
