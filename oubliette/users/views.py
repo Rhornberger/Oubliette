@@ -7,6 +7,7 @@ from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 
 # Create your views here.
+# registration view
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -20,6 +21,8 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
 
+
+# profile view
 @login_required
 def profile(request):
     if request.method == 'POST':

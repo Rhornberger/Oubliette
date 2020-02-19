@@ -24,9 +24,8 @@ from characters.models import Sixth_Lvl_Spell
 from characters.models import Seventh_Lvl_Spell
 from characters.models import Eighth_Lvl_Spell
 from characters.models import Ninth_Lvl_Spell
-from characters.models import Note
-# from parties.models import Party
-# from characters.models import Character
+from characters.models import Note 
+
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:

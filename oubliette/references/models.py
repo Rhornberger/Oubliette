@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+# Spell model for DB
 class Spell(models.Model):
     """creating the tables for the spells model"""
     spell_name = models.CharField(max_length=50) #spell name
@@ -19,6 +19,7 @@ class Spell(models.Model):
         """this will return just the spells name when performing a search"""
         return f'{self.spell_name}'
 
+# Race model for DB
 class Race(models.Model):
     """creating the tables for character race quick reference model"""
     race_name = models.CharField(max_length=50) 
