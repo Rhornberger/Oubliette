@@ -2,9 +2,9 @@
 
 * [Oubliett](#Oubliette)
 * [Inspiration](#Inspiration)
-* [What will Oubliette become?](#What_will_Oubliette_become?)
-* [Technologies used](#Technologies_used)
-* [Setting up the enviroment](#Setting_up_the_enviroment)
+* [What will Oubliette become?](#What-will-Oubliette-become?)
+* [Technologies used](#Technologies-used)
+* [Setting up the enviroment](#Setting-up-the-enviroment)
 
 ## Oubliette
 
