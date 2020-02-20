@@ -5,7 +5,7 @@ Oubliette is currently a basic quick reference for Tabletop Roleplaying games (s
 
 ## Inspiration
 
-Tabletop Roleplaying games are a proccess of collaborative story telling. A group of friends will get together, agree on a platform and general style of adventure. From there they take the skeleton of a story and together they decide what direction and details fill out that story through the process of game play. The world they choose to play in requires a very complex and vast set of rules that outlines and makes "real" this imaginary world. All players need to keep a running list of of the basic world rules and how that effects the character they are playing, the main purpose of oubliette is to streamline the process of looking up that information and unbury a players lap from the mountain of books that tend to pile up as a player references and cross references the rules of a fantasy world. 
+Tabletop Roleplaying games are a process of collaborative story telling. A group of friends will get together, agree on a platform and general style of adventure. From there they take the skeleton of a story and together they decide what direction and details fill out that story through the process of game play. The world they choose to play in requires a very complex and vast set of rules that outlines and makes "real" this imaginary world. All players need to keep a running list of of the basic world rules and how that effects the character they are playing, the main purpose of Oubliette is to streamline the process of looking up that information and unbury a players lap from the mountain of books that tend to pile up as a player references and cross references the rules of a fantasy world. 
 
 ## What will Oubliette become?
 
