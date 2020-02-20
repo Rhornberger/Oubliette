@@ -11,6 +11,19 @@ Tabletop Roleplaying games are a process of collaborative story telling. A group
 
 Oubliette seeks to be a social media platform for Tabletop RPG enthusiasts that will allow playes to have easy access to the gameplay information as well as be able to start a Party page that will allow players to more easily share information between one another and keep journal logs of what has happened during each game sessions. This page will also allow Game Masters to make changes to charachter sheets and other pertinent game and player info.
 
+
+## Technologies used 
+This is a full stack project that was managed and built by Rhiannon Hornberger useing the following tech stack.
+* Django
+* Django Rest Framework
+* Vue.js
+* Axios 
+* Html
+* Bootstrap 4
+* Vanilla CSS
+* SqLite
+* Custom Api 
+
 ## Setting up the enviroment
 
 1. Clone the repo.
