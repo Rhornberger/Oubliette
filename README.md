@@ -1,3 +1,11 @@
+## Table of contents
+
+* [Oubliett](#Oubliette)
+* [Inspiration](#Inspiration)
+* [What will Oubliette become?](#What_will_Oubliette_become?)
+* [Technologies used](#Technologies_used)
+* [Setting up the enviroment](#Setting_up_the_enviroment)
+
 ## Oubliette
 
 Oubliette is currently a basic quick reference for Tabletop Roleplaying games (specifically Pathfinder).
