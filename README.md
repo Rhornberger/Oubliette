@@ -15,7 +15,7 @@ Oubliette seeks to be a social media platform for Tabletop RPG enthusiasts that 
 
 1. Clone the repo.
 2. Set up your virtual environment.
-    1. If you don't already have it installed on your machine please see the intallation instructions [here](https://pip.pypa.io/en/stable/installing/). 
+    1. If you don't already have pip installed on your machine please see the installation instructions [here](https://pip.pypa.io/en/stable/installing/). 
     2. You can create one using: `pip install -r requirements.txt`.
     3. Move into the virtual enviroment by (you will need to prepend this with one of the following: py, py -m, or python depending on what your computer set up is) `$ pipenv shell`.
     4. Once in the virtual enviroment do `pipenv sync --dev` (you can do this outside of the virtual enviroment by using `pipenv install --dev`).
