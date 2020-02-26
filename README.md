@@ -1,6 +1,6 @@
 ## Table of contents
 
-* [Oubliett](#Oubliette)
+* [Oubliette](#Oubliette)
 * [Inspiration](#Inspiration)
 * [What Oubliette will become](#What-Oubliette-will-become)
 * [Technologies used](#Technologies-used)
